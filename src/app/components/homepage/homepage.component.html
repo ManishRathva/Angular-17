@@ -1,7 +1,11 @@
-<div>
-    <div class="container-fluid">
-        <div class="row">
-            @for (product of products;track product.id){
+ <div class="container-fluid">
+        <div class="row my-5" >
+            @for (product of products | paginate
+            : {
+            itemsPerPage: itemsPerPage,
+            currentPage: page,
+            totalItems: totalItems
+            }; track product.id;){
             <div class="col-sm-2 col-md-3 col-lg-3 col-xl-3 border my-2" (click)="getData(product.id)">
                 <div class="productImage">
                     <img src={{product.thumbnail}} alt="logo">
@@ -15,11 +19,11 @@
                             <p><b>Price</b>: {{product.price | currency: 'INR'}}</p>
                         </div>
                     </div>
-    
+
                     <p><b>Description</b>: {{product.description}}</p>
                 </div>
             </div>
             }
+            <div style="display: flex;justify-content: center;align-items: center;"><pagination-controls class="pagination" (pageChange)="gty((page = $event))"></pagination-controls></div>
         </div>
     </div>
-</div>

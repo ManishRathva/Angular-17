@@ -18,6 +18,8 @@ export class CartItemsComponent {
 
   ngOnInit(){
     this.product=  this.cartService.getCartItems();
+    console.log("product", this.product.length);
+    
     const totalPriceSum = this.product.reduce((total, product) => {
       return total + (product.price || 0); 
     }, 0);

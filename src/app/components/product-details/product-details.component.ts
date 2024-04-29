@@ -24,7 +24,7 @@ export class ProductDetailsComponent {
   ngOnInit(){
     this.productId = this.activatedRoute.snapshot.paramMap.get("id");
 
-    this.apiServices.getData().subscribe((data: any) => {
+    this.apiServices.getDetails().subscribe((data: any) => {
       this.products = data?.products;
       if (this.products && this.productId) {
         const products = this.products.filter(product => product.id == this.productId);

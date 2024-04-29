@@ -1,20 +1,26 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 border my-3">
+        <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 border my-3 productDetails">
+            @if(product.length === 0){
+            <div class="text-center">
+                <h2>No Product Selected</h2>
+            </div>
+            }@else{
             @for (product of product;track product.id){
-            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 border my-3">
-                <div class="row align-items-center">
-                    <div class="col">
-                        <img [src]="product?.thumbnail" alt="productimage">
+                <div class="row align-items-center border">
+                    <div class="col col-md-2 col-lg-3 col-xl-3 col-xxl-3">
+                        <img [src]="product?.thumbnail" class="productImage" alt="productimage">
                     </div>
-                    <div class="col">
-                        <p><b>Title</b>:- {{product?.title}}</p>
-                        <p><b>Price</b>:- {{product?.price | currency: 'INR'}}</p>
-                        <p><b>Descount</b>:- {{product?.discountPercentage}}</p>
-                        <p><b>Description</b>:- {{product?.description}}</p>
+                    <div class="col col-md-10 col-lg-9 col-xl-9 col-xxl-9">
+                        <div class="row row-cols-2">
+                            <div class="col"><b>Title</b>:- {{product?.title}}</div>
+                            <div class="col"><b>Price</b>:- {{product?.price | currency: 'INR'}}</div>
+                            <div class="col"><b>Descount</b>:- {{product?.discountPercentage}}</div>
+                            <div class="col"><b>Description</b>:- {{product?.description}}  </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
             }
         </div>
 
@@ -28,23 +34,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for (product of product;track product.id;let i = $index){
+                    @if(product.length === 0) {
+                    <tr>
+                        <td colspan="3" class="text-center">No Product Selected</td>
+                    </tr>
+                    } @else {
+                    @for (product of product; track product.id; let i = $index) {
                     <tr>
                         <td>{{i+1}}</td>
                         <td>{{product?.title}}</td>
                         <td>{{product?.price | currency: 'INR'}}</td>
                     </tr>
                     }
+                    }
                 </tbody>
-                <thead>
+                <tfoot>
                     <tr>
                         <th scope="col"></th>
                         <th scope="col">Total</th>
                         <td>{{totalprice | currency:'INR'}}</td>
                     </tr>
-                </thead>
+                </tfoot>
             </table>
-                <button type="button" class="btn btn-success w-100">Pay now ({{totalprice | currency :'INR'}})</button>  
+
+            <button type="button" class="btn btn-success w-100">Pay now ({{totalprice | currency :'INR'}})</button>
         </div>
     </div>
 </div>

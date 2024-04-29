@@ -6,11 +6,17 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ServiceService {
+  apiUrl = 'https://dummyjson.com/products';
 
   constructor(private http:HttpClient) {
    }
 
-   getData(){
-     return this.http.get('https://dummyjson.com/products');
+  getData(limit: number,
+    skip: number){
+    return this.http.get(`${this.apiUrl}?limit=${limit}&skip=${skip}`);
    }
+   
+  getDetails() {
+    return this.http.get(`${this.apiUrl}`);
+  }
 }
