@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 border my-3">
+            @for (product of product;track product.id){
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 border my-3">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <img [src]="product?.thumbnail" alt="productimage">
+                    </div>
+                    <div class="col">
+                        <p><b>Title</b>:- {{product?.title}}</p>
+                        <p><b>Price</b>:- {{product?.price | currency: 'INR'}}</p>
+                        <p><b>Descount</b>:- {{product?.discountPercentage}}</p>
+                        <p><b>Description</b>:- {{product?.description}}</p>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 my-3">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (product of product;track product.id;let i = $index){
+                    <tr>
+                        <td>{{i+1}}</td>
+                        <td>{{product?.title}}</td>
+                        <td>{{product?.price | currency: 'INR'}}</td>
+                    </tr>
+                    }
+                </tbody>
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Total</th>
+                        <td>{{totalprice | currency:'INR'}}</td>
+                    </tr>
+                </thead>
+            </table>
+                <button type="button" class="btn btn-success w-100">Pay now ({{totalprice | currency :'INR'}})</button>  
+        </div>
+    </div>
+</div>

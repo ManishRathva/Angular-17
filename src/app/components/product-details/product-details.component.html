@@ -1,0 +1,36 @@
+<div class="container-fluid">
+   <div class="container my-5">
+    <div>
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-primary my-3" routerLink="/dashbord/product"><i class="bi bi-arrow-left"></i>Back</button>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+    <div class="row align-items-start">
+        <div class="col productImage">
+            <img [src]="product?.thumbnail" alt="productimage">
+            <div class="preview-image">
+                @for(image of product?.images; track image;){
+                <img src={{image}} alt="productimage" (click)="selectImage(image)">
+                }
+            </div>
+        </div>
+        <div class="col">
+            <div>
+                <p><b>Title</b>:- {{product?.title}}</p>
+                <p><b>Price</b>:- {{product?.price | currency: 'INR'}}</p>
+                <p><b>Descount</b>:- {{product?.discountPercentage}}</p>
+                <p><b>Description</b>:- {{product?.description}}</p>
+                <p><b>Stock</b>:- {{product?.stock}}</p>
+                <p><b>Brand</b>:- {{product?.brand}}</p>
+                <p><b>Category</b>:- {{product?.category}}</p>
+                <div>
+                    <button type="button" class="btn btn-success" (click)="addtoCart(product)">Add To Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+</div>

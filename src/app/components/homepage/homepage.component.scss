@@ -1,0 +1,12 @@
+.container-fluid{
+    .productImage {
+        cursor: pointer;
+            aspect-ratio: 3/2;
+        }
+    
+        .productImage img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+}
